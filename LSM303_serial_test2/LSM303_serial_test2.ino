@@ -1,10 +1,10 @@
+
 /*
 Tested with a Pololu MinIMUv3 board (LSM303D) hooked to Arduino Uno.
 Hook 5V from Uno to VIN pin
 Hook GND from Uno to GND pin
 Hook SCL from Uno to SCL pin
 Hook SDA from Uno to SDA pin
-
 
 The sensor outputs provided by the library are the raw 16-bit values
 obtained by concatenating the 8-bit high and low accelerometer and
@@ -18,13 +18,11 @@ in the LSM303D datasheet (page 10) states a conversion factor of 0.160
 mgauss/LSB (least significant bit) at this FS setting, so the raw
 reading of -1982 corresponds to 1982 * 0.160 = 317.1 mgauss =
 0.3171 gauss.
-
-
 */
+
 
 #include <Wire.h>
 #include <LSM303.h>
-
 LSM303 compass;
 
 char report[80];
@@ -40,7 +38,7 @@ void setup()
 void loop()
 {
   compass.read();
-
+  
   snprintf(report, sizeof(report), "%6d,%6d,%6d,%6d,%6d,%6d",
     compass.a.x, compass.a.y, compass.a.z,
     compass.m.x, compass.m.y, compass.m.z);
